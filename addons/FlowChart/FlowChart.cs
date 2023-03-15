@@ -2,15 +2,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Fractural.GodotCodeGenerator.Attributes;
 using Fractural.Utils;
 using Godot;
 using GDC = Godot.Collections;
 
 namespace Fractural.FlowChart
 {
+    [CSharpScript]
     // TODO: Add callbacks for selection drag finished, etc. to support undo and redo of graph
-    [Tool]
-    public class FlowChart : Control
+    //[Tool]
+    public partial class FlowChart : Control
     {
         #region Signals
         /// <summary>
@@ -86,16 +88,16 @@ namespace Fractural.FlowChart
         #endregion
 
         #region Dependencies
-        protected Control content = new Control(); // Root node that hold anything drawn in the flowchart
-        protected HScrollBar hScroll = new HScrollBar();
-        protected VScrollBar vScroll = new VScrollBar();
-        protected VBoxContainer topBar = new VBoxContainer();
-        protected HBoxContainer toolbar = new HBoxContainer(); // Root node of top overlay controls
-        protected Button zoomMinus = new Button();
-        protected Button zoomReset = new Button();
-        protected Button zoomPlus = new Button();
-        protected Button snapButton = new Button();
-        protected SpinBox snapAmount = new SpinBox();
+        [OnReadyGet] protected Control content; // Root node that hold anything drawn in the flowchart
+        [OnReadyGet] protected HScrollBar hScroll;
+        [OnReadyGet] protected VScrollBar vScroll;
+        [OnReadyGet] protected VBoxContainer topBar;
+        [OnReadyGet] protected HBoxContainer toolbar; // Root node of top overlay controls
+        [OnReadyGet] protected Button zoomMinus;
+        [OnReadyGet] protected Button zoomReset;
+        [OnReadyGet] protected Button zoomPlus;
+        [OnReadyGet] protected Button snapButton;
+        [OnReadyGet] protected SpinBox snapAmount;
         #endregion
 
         #region Private Fields
@@ -194,34 +196,21 @@ namespace Fractural.FlowChart
         #endregion
 
         #region Godot Lifetime Methods
-        public override void _Ready()
+        [OnReady]
+        public void RealReady()
         {
             FocusMode = FocusModeEnum.All;
             SelectionStylebox.BgColor = new Color(0, 0, 0, 0.3f);
             SelectionStylebox.SetBorderWidthAll(1);
 
-            content.MouseFilter = MouseFilterEnum.Ignore;
-            AddChild(content);
-
-            AddChild(hScroll);
-            hScroll.SetAnchorsAndMarginsPreset(LayoutPreset.BottomWide);
             hScroll.Connect("value_changed", this, nameof(OnHScrollChanged));
             hScroll.Connect("gui_input", this, nameof(OnHScrollGuiInput));
 
-            AddChild(vScroll);
-            vScroll.SetAnchorsAndMarginsPreset(LayoutPreset.RightWide);
             vScroll.Connect("value_changed", this, nameof(OnVScrollChanged));
             vScroll.Connect("gui_input", this, nameof(OnVScrollGuiInput));
 
-            hScroll.MarginRight = -vScroll.RectSize.x;
-            vScroll.MarginBottom = -hScroll.RectSize.y;
-
             AddLayerTo(content);
             SelectLayerAt(0);
-
-            topBar.SetAnchorsAndMarginsPreset(LayoutPreset.TopWide);
-            topBar.MouseFilter = MouseFilterEnum.Ignore;
-            AddChild(topBar);
 
             toolbar.MouseFilter = MouseFilterEnum.Ignore;
             topBar.AddChild(toolbar);
@@ -996,24 +985,13 @@ namespace Fractural.FlowChart
         #endregion
 
         #region Virtual Prefab Creation
-        private PackedScene flowChartLayerPrefab;
-        public PackedScene FlowChartLayerPrefab
-        {
-            get
-            {
-                if (flowChartLayerPrefab == null)
-                    flowChartLayerPrefab = GD.Load<PackedScene>("res://addons/FracturalFSM/Editor/FlowChart/FlowChartLayer.tscn");
-                return flowChartLayerPrefab;
-            }
-        }
-
         private PackedScene flowChartLinePrefab;
         public PackedScene FlowChartLinePrefab
         {
             get
             {
                 if (flowChartLinePrefab == null)
-                    flowChartLinePrefab = GD.Load<PackedScene>("res://addons/FracturalFSM/Editor/FlowChart/FlowChartLine.tscn");
+                    flowChartLinePrefab = GD.Load<PackedScene>("res://addons/FlowChart/FlowChartLine.tscn");
                 return flowChartLinePrefab;
             }
         }
@@ -1024,7 +1002,7 @@ namespace Fractural.FlowChart
         /// <returns></returns>
         public virtual FlowChartLayer CreateLayerInstance()
         {
-            return flowChartLayerPrefab.Instance<FlowChartLayer>();
+            return CSharpScript<FlowChartLayer>.New();
         }
 
         /// <summary>

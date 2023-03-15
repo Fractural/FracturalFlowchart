@@ -73,6 +73,7 @@ namespace Fractural.FlowChart
         public Vector2 GetToPos() => ToNode != null ? ToNode.RectPosition + ToNode.RectSize / 2f : Line.RectPosition;
     }
 
+    [CSharpScript]
     [Tool]
     public class FlowChartLayer : Control
     {

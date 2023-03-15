@@ -4,6 +4,7 @@ using Godot;
 
 namespace Fractural.FlowChart
 {
+    [CSharpScript]
     [Tool]
     public class FlowChartNode : Container, ISelectable
     {

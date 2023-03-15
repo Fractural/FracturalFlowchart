@@ -7,6 +7,7 @@ using System.Collections.Generic;
 
 namespace Fractural.FlowChart
 {
+    [CSharpScript]
     [Tool]
     public class FlowChartLine : Container, ISelectable
     {

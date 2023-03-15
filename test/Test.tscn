@@ -1,0 +1,109 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://addons/FracturalFlowchart/DefaultTheme.tres" type="Theme" id=2]
+[ext_resource path="res://addons/FracturalFlowchart/Flowchart.tscn" type="PackedScene" id=3]
+[ext_resource path="res://addons/FracturalFlowchart/FlowchartNode.tscn" type="PackedScene" id=4]
+
+[node name="Control" type="MarginContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 2 )
+
+[node name="HSplitContainer" type="HSplitContainer" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+
+[node name="Flowchart2" parent="HSplitContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+
+[node name="FlowchartNode" parent="HSplitContainer/Flowchart2" instance=ExtResource( 4 )]
+margin_left = 63.0
+margin_top = 64.0
+margin_right = 113.0
+margin_bottom = 114.0
+
+[node name="MarginContainer" type="MarginContainer" parent="HSplitContainer/Flowchart2/FlowchartNode"]
+margin_right = 58.0
+margin_bottom = 50.0
+mouse_filter = 2
+custom_constants/margin_right = 8
+custom_constants/margin_top = 8
+custom_constants/margin_left = 8
+custom_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="HSplitContainer/Flowchart2/FlowchartNode/MarginContainer"]
+margin_left = 8.0
+margin_top = 14.0
+margin_right = 50.0
+margin_bottom = 36.0
+text = "Node"
+
+[node name="FlowchartNode2" parent="HSplitContainer/Flowchart2" instance=ExtResource( 4 )]
+margin_left = 175.0
+margin_top = 198.0
+margin_right = 225.0
+margin_bottom = 248.0
+
+[node name="MarginContainer" type="MarginContainer" parent="HSplitContainer/Flowchart2/FlowchartNode2"]
+margin_right = 58.0
+margin_bottom = 50.0
+mouse_filter = 2
+custom_constants/margin_right = 8
+custom_constants/margin_top = 8
+custom_constants/margin_left = 8
+custom_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="HSplitContainer/Flowchart2/FlowchartNode2/MarginContainer"]
+margin_left = 8.0
+margin_top = 14.0
+margin_right = 50.0
+margin_bottom = 36.0
+text = "Node"
+
+[node name="FlowchartNode3" parent="HSplitContainer/Flowchart2" instance=ExtResource( 4 )]
+margin_left = 266.0
+margin_top = 86.0
+margin_right = 316.0
+margin_bottom = 136.0
+
+[node name="MarginContainer" type="MarginContainer" parent="HSplitContainer/Flowchart2/FlowchartNode3"]
+margin_right = 163.0
+margin_bottom = 50.0
+mouse_filter = 2
+custom_constants/margin_right = 8
+custom_constants/margin_top = 8
+custom_constants/margin_left = 8
+custom_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="HSplitContainer/Flowchart2/FlowchartNode3/MarginContainer"]
+margin_left = 8.0
+margin_top = 14.0
+margin_right = 155.0
+margin_bottom = 36.0
+text = "This is a biggggg node"
+
+[node name="GraphEdit" type="GraphEdit" parent="HSplitContainer"]
+visible = false
+margin_left = 516.0
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+scroll_offset = Vector2( -452, -100 )
+
+[node name="GraphNode" type="GraphNode" parent="HSplitContainer/GraphEdit"]
+margin_left = 452.0
+margin_top = 100.0
+margin_right = 508.0
+margin_bottom = 129.0
+mouse_filter = 1
+
+[node name="GraphNode2" type="GraphNode" parent="HSplitContainer/GraphEdit"]
+margin_left = 452.0
+margin_top = 100.0
+margin_right = 508.0
+margin_bottom = 129.0
+mouse_filter = 1

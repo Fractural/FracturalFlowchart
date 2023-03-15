@@ -211,6 +211,7 @@ namespace Fractural.Flowchart
 
         public override void _Ready()
         {
+            debugLabel.Visible = DebugDisplay;
             var theme = this.GetThemeFromAncestor(true);
 
             // Allow dezooming 8 times from the default zoom level.

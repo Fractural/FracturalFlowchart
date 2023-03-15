@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://addons/FracturalFlowchart/DefaultTheme.tres" type="Theme" id=2]
+[ext_resource path="res://test/DefaultTheme.tres" type="Theme" id=2]
 [ext_resource path="res://addons/FracturalFlowchart/Flowchart.tscn" type="PackedScene" id=3]
 [ext_resource path="res://addons/FracturalFlowchart/FlowchartNode.tscn" type="PackedScene" id=4]
 

@@ -3,6 +3,8 @@
 A Godot addon that adds a custom flowchart node similar to graph edit except made up of nodes that can have connections to multiple other nodes. 
 This can be used to make state machine editors, such as the editor found in [FracturalFSM](https://github.com/Fractural/FracturalFSM).
 
+This is a modified C# port of imjp94's FlowChart node in [gd-YAFSM](https://github.com/imjp94/gd-YAFSM).
+
 A Flowchart is a control that can display a flow chart like graph. It can store multiple layers called FlowchartLayers. 
 A FlowchartLayer contains FlowchartNodes and FlowchartLines.
 

@@ -32,7 +32,7 @@ FlowchartLayer stores a group of nodes and lines. Connections between nodes are 
 
 A Flowchart control that displays the flow chart. To make your own Flowchart, make a new C# class that extends Flowchart.
 
-### Prefab creation
+### Prefab Creation
 
 To make the flowchart use your own implementation of flowchart layers/flowchart lines, you can override the prefab creation methods to return your own instances.
 
